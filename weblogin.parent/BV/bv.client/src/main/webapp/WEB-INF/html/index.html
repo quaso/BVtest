@@ -1,0 +1,148 @@
+<!doctype html>
+<html ng-app="BVApp">
+<head>
+<meta charset="utf-8">
+<title>Create user</title>
+<!-- <link rel="icon" type="image/x-icon" href="resources/favicon.ico" /> -->
+
+<link rel="stylesheet"
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css" />
+<!-- <link rel="stylesheet" href="resources/css/dashboard.css" /> -->
+<!-- <link rel="stylesheet" href="resources/css/estateList.css" /> -->
+<!-- <link rel="stylesheet" -->
+<!-- 	href="http://ivaynberg.github.com/select2/select2-3.5.1/select2.css" /> -->
+
+<script src="http://code.jquery.com/jquery-2.1.1.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.js"></script>
+<script
+	src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular-animate.js"></script>
+<script src="resources/js/angular-translate.min.js"></script>
+<!-- <script -->
+<!-- 	src="http://ivaynberg.github.io/select2/select2-3.5.1/select2.js"></script> -->
+<script src="resources/js/App.js"></script>
+<script src="resources/js/BVController.js"></script>
+<script src="resources/js/BVFilters.js"></script>
+<script src="resources/js/BVTranslation.js"></script>
+
+</head>
+<body ng-controller="BVController">
+	<!--workaround for error message truncating in Chrome-->
+	<script>
+		//5th parameter is the key one
+		window.onerror = function(errorMsg, url, lineNumber, columnNumber,
+				errorObject) {
+			var errMsg;
+			if (errorObject && errorObject !== undefined) {
+				errMsg = errorObject.message;
+			} else {
+				errMsg = errorMsg;
+			}
+			console.log('Error: ' + errMsg);
+		}
+	</script>
+
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button data-target=".navbar-collapse" data-toggle="collapse"
+					class="navbar-toggle" type="button">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a href="/" class="navbar-brand ng-scope" translate="CAPTION"></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-left">
+					<li>
+						<div ng-controller="BVController" class="ng-scope">
+							<button translate="BUTTON_LANG_EN"
+								ng-click="changeLanguage('en')" class="btn ng-scope">english</button>
+							<button translate="BUTTON_LANG_DE"
+								ng-click="changeLanguage('de')" class="btn ng-scope">german</button>
+						</div>
+					</li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a translate="LOGGED_USER_TEXT"></a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="container-fluid">
+			<form role="form">
+				<div class="form-group"></div>
+			</form>
+
+			<div class="span4">
+				<div class="well">
+					<h2 translate="TITLE" class="ng-scope">Hello</h2>
+					<p translate="FOO" class="ng-scope">This is a paragraph.</p>
+				</div>
+				<div ng-controller="BVController" class="ng-scope">
+					<button translate="BUTTON_LANG_EN" ng-click="changeLanguage('en')"
+						class="btn ng-scope">english</button>
+					<button translate="BUTTON_LANG_DE" ng-click="changeLanguage('de')"
+						class="btn ng-scope">german</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- 
+	<div class="container-fluid">
+		<form role="form">
+			<div class="form-group"></div>
+		</form>
+
+
+		<div class="row main show-hide" ng-repeat="estate in filteredEstates"
+			ng-show="estate.visible">
+			<div class="col-sm-offset-2 col-sm-8">
+				<div class="col-sm-3">
+					<a href="{{estate.url}}" target="_blank"> <img
+						alt="{{estate.title}}" ng-src="{{estate.thumbnail}}" />
+					</a>
+				</div>
+
+				<div class="container col-sm-7">
+					<div class="row">
+						<h4 class="col-sm-12 title">
+							<a href="{{estate.urls[0]}}" target="_blank"
+								title="Peristed: {{estate.persisted}}, dirty: {{estate.dirty}}, id: {{estate.id}}">{{estate.title}}</a>
+						</h4>
+					</div>
+					<div class="row">
+						<div class="bold red">{{estate.street}}</div>
+					</div>
+					<div class="row">
+						Plocha:
+						<div class="red area">
+							{{estate.area}} m<sup>2</sup>
+						</div>
+					</div>
+					<div class="row" ng-repeat="note in estate.notes">{{note}}</div>
+				</div>
+
+				<div class="col-sm-2">
+					<div class="row">
+						<div class="bold red price alignRight">{{estate.price}}
+							&euro;</div>
+					</div>
+					<div class="row">
+						<div class="alignRight">{{estate.timestamp |
+							date:'dd.MM.yyyy HH:mm'}}</div>
+					</div>
+					<div class="row">
+						<div class="btn glyphicon glyphicon-eye-close floatRight"
+							ng-click="hideEstate(estate)"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	-->
+</body>
+
+</html>

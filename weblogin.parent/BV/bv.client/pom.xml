@@ -1,0 +1,78 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>bv.client</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<parent>
+		<groupId>de.firstdata.weblogin</groupId>
+		<artifactId>weblogin.parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				<version>6.1.25</version>
+				<configuration>
+					<!-- <systemPropertiesFile> -->
+					<!-- ${basedir}/../../EwasTest/src/main/resources/dev-ewas.properties -->
+					<!-- </systemPropertiesFile> -->
+					<systemProperties>
+						<systemProperty>
+							<name>file.encoding</name>
+							<value>UTF-8</value>
+						</systemProperty>
+						<systemProperty>
+							<name>gzs.environment</name>
+							<value>dev</value>
+						</systemProperty>
+						<systemProperty>
+							<name>node.name</name>
+							<value>default</value>
+						</systemProperty>
+					</systemProperties>
+					<!-- <userRealms> -->
+					<!-- <userRealm implementation="org.mortbay.jetty.security.HashUserRealm"> -->
+					<!-- <name>BVFrontEnd</name> -->
+					<!-- <config>realm.properties</config> -->
+					<!-- </userRealm> -->
+					<!-- </userRealms> -->
+					<contextPath>/BVClient</contextPath>
+					<!-- <jettyEnvXml>src/test/resources/jetty-env.xml</jettyEnvXml> -->
+					<!-- <contextHandlers> -->
+					<!-- <contextHandler implementation="org.mortbay.jetty.webapp.WebAppContext"> -->
+					<!-- <war>file:///${basedir}/../../EwasAuthServiceParent/EwasAuthServiceMockWeb/target/EwasAuthServiceMockWeb-2.0.1-SNAPSHOT.war</war> -->
+					<!-- <contextPath>/EwasAuthServiceMockWeb</contextPath> -->
+					<!-- </contextHandler> -->
+					<!-- </contextHandlers> -->
+				</configuration>
+
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.7</version>
+		</dependency>
+	</dependencies>
+</project>
