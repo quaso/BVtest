@@ -1,96 +1,261 @@
 <!doctype html>
-<html ng-app="BVApp">
+<html ng-app="BVApp" ng-cloak>
 <head>
 <meta charset="utf-8">
 <title>Create user</title>
 <!-- <link rel="icon" type="image/x-icon" href="resources/favicon.ico" /> -->
 
 <link rel="stylesheet"
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css" />
-<!-- <link rel="stylesheet" href="resources/css/dashboard.css" /> -->
-<!-- <link rel="stylesheet" href="resources/css/estateList.css" /> -->
+	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.css" />
+
+<link rel="stylesheet" href="resources/css/dashboard.css" />
+<link rel="stylesheet" href="resources/css/main.css" />
+
 <!-- <link rel="stylesheet" -->
 <!-- 	href="http://ivaynberg.github.com/select2/select2-3.5.1/select2.css" /> -->
 
 <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.js"></script>
-<script
-	src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular-animate.js"></script>
+<!-- <script -->
+<!-- 	src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular-animate.js"></script> -->
 <script src="resources/js/angular-translate.min.js"></script>
 <!-- <script -->
 <!-- 	src="http://ivaynberg.github.io/select2/select2-3.5.1/select2.js"></script> -->
+<!-- <script src="resources/js/dropdown.js"></script> -->
+
 <script src="resources/js/App.js"></script>
-<script src="resources/js/BVController.js"></script>
+<!-- <script src="resources/js/BVController.js"></script> -->
 <script src="resources/js/BVFilters.js"></script>
 <script src="resources/js/BVTranslation.js"></script>
+<!-- <script src="resources/js/validator.min.js"></script> -->
+<!-- <script src="resources/js/bootstrap-combobox.js"></script> -->
+
+<!-- <script -->
+<!-- 	src="http://www.eyecon.ro/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> -->
+<script src="resources/js/createUserForm.js"></script>
 
 </head>
-<body ng-controller="BVController">
-	<!--workaround for error message truncating in Chrome-->
-	<script>
-		//5th parameter is the key one
-		window.onerror = function(errorMsg, url, lineNumber, columnNumber,
-				errorObject) {
-			var errMsg;
-			if (errorObject && errorObject !== undefined) {
-				errMsg = errorObject.message;
-			} else {
-				errMsg = errorMsg;
-			}
-			console.log('Error: ' + errMsg);
-		}
-	</script>
-
-	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<body>
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="TranslationController">
 		<div class="container">
 			<div class="navbar-header">
-				<button data-target=".navbar-collapse" data-toggle="collapse"
-					class="navbar-toggle" type="button">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a href="/" class="navbar-brand ng-scope" translate="CAPTION"></a>
+				<a href="/" class="navbar-brand site-caption">{{'CAPTION' |
+					translate }}</a>
 			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-left">
-					<li>
-						<div ng-controller="BVController" class="ng-scope">
-							<button translate="BUTTON_LANG_EN"
-								ng-click="changeLanguage('en')" class="btn ng-scope">english</button>
-							<button translate="BUTTON_LANG_DE"
-								ng-click="changeLanguage('de')" class="btn ng-scope">german</button>
+			<div class="container top-12">
+<!-- 			 ng-controller="BVController"> -->
+				<div class="pull-right col-md-1">
+					<div class="lang-eng" title="{{'LANG_EN' | translate }}"
+						ng-click="changeLanguage('en')"></div>
+					<div ng-click="changeLanguage('de')" class="lang-de"
+						title="{{'LANG_DE' | translate }}"></div>
+				</div>
+				<div class="pull-right col-md-3">
+					<div class="row float-right">
+						{{'LOGGED_USER_TEXT' | translate }} <span class="bold">f017mkn</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<form id="createUserForm" class="form-horizontal" role="form"
+			method="post" data-toggle="validator"
+			ng-controller="CreateUserController">
+
+			<div class="row">
+				<div class="form-group col-md-6 required">
+					<label class="control-label col-md-4" for="textFirstName">{{'LABEL_FIRST_NAME'
+						| translate }}</label>
+					<div class="col-md-8">
+						<input id="textFirstName" name="textFirstName"
+							class="form-control" type="text" required="required">
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+				<div class="form-group col-md-6 required">
+					<label class="control-label col-md-offset-1 col-md-3"
+						for="textLastName">{{'LABEL_LAST_NAME' | translate }}</label>
+					<div class="col-md-8">
+						<input id="textLastName" name="textLastName"
+							class="form-control input-md" type="text" required="required">
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="form-group col-md-6 required">
+					<label class="control-label col-md-4" for="textUserId">{{'LABEL_USER_ID'
+						| translate }}</label>
+					<div class="col-md-8">
+						<input id="textUserId" name="textUserId"
+							class="form-control input-md" type="text" required="required">
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+				<div class="form-group col-md-6 required">
+					<label class="control-label col-md-offset-1 col-md-3"
+						for="inputEmail">{{'LABEL_EMAIL' | translate }}</label>
+					<div class="col-md-8">
+						<div class="input-group">
+							<span class="input-group-addon"><span
+								class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
+							<input type="email" class="form-control" id="inputEmail"
+								placeholder="email address" required>
 						</div>
-					</li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a translate="LOGGED_USER_TEXT"></a></li>
-				</ul>
-			</div>
-		</div>
-
-		<div class="container-fluid">
-			<form role="form">
-				<div class="form-group"></div>
-			</form>
-
-			<div class="span4">
-				<div class="well">
-					<h2 translate="TITLE" class="ng-scope">Hello</h2>
-					<p translate="FOO" class="ng-scope">This is a paragraph.</p>
-				</div>
-				<div ng-controller="BVController" class="ng-scope">
-					<button translate="BUTTON_LANG_EN" ng-click="changeLanguage('en')"
-						class="btn ng-scope">english</button>
-					<button translate="BUTTON_LANG_DE" ng-click="changeLanguage('de')"
-						class="btn ng-scope">german</button>
+						<div class="help-block with-errors"></div>
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<!-- 
+			<div class="row">
+				<div class="form-group col-md-6 required">
+					<label class="control-label col-md-4" for="userTypeMenu">{{'LABEL_USER_TYPE'
+						| translate }}</label>
+					<div class="col-md-8">
+						<select id="userTypeMenu" class="combobox form-control"
+							data-placeholder="{{'PLACEHOLDER_USER_TYPE' | translate }}"
+							required="required">
+							<option value=""></option>
+							<option value="PA">Pennsylvania</option>
+							<option value="CT">Connecticut</option>
+							<option value="NY">New York</option>
+							<option value="MD">Maryland</option>
+							<option value="VA">Virginia</option>
+						</select>
+						<div class="help-block with-errors"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="form-group col-md-8 required">
+					<label class="control-label col-md-3" for="initialPwd">{{'LABEL_INIT_PWD'
+						| translate }}</label>
+					<div class="col-md-4">
+						<input id="initialPwd" name="initialPwd" placeholder="password"
+							class="form-control input-md" type="text" required="required"
+							value="startpw" ng-model="password">
+						<div class="help-block with-errors"></div>
+					</div>
+					<button type="button" class="btn btn-default btn-sm"
+						ng-click="generatePassword()">{{'BUTTON_GENERATE' |
+						translate }}</button>
+					<button type="button" class="btn btn-default btn-sm"
+						style="margin-left: 10px;" ng-click="defaultPassword()">{{'BUTTON_DEFAULT'
+						| translate }}</button>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="panel-group" id="optionalPanel" role="tablist"
+					aria-multiselectable="true">
+					<div class="panel panel-default">
+						<div class="panel-heading" role="tab" id="headingOptional">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#optionalPanel"
+									href="#collapseOptional" aria-expanded="true"
+									aria-controls="collapseOptional">{{'CAPTION_OPTIONAL_PARAMETERS'
+									| translate }}</a>
+							</h4>
+						</div>
+						<div id="collapseOptional" class="panel-collapse collapse in"
+							role="tabpanel" aria-labelledby="headingOptional">
+							<div class="panel-body">
+
+								<div class="row">
+									<div class="form-group col-md-6">
+										<label class="control-label col-md-4" for="languageMenu">{{'LABEL_LANGUAGE'
+											| translate }}</label>
+										<div class="col-md-8">
+											<select id="languageMenu" class="combobox form-control"
+												data-placeholder="default language">
+												<option value=""></option>
+												<option value="EN">{{'LANG_EN' | translate }}</option>
+												<option value="DE">{{'LANG_DE' | translate }}</option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="form-group col-md-6">
+										<label class="control-label col-md-4" for="accountValidFrom">{{'LABEL_VALID_FROM'
+											| translate }}</label>
+										<div class="col-md-4">
+											<div class="input-group">
+												<span class="input-group-addon"><span
+													class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+												<input id="accountValidFrom" placeholder="select date"
+													class="form-control" type="text" value="">
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="form-group col-md-6">
+										<label class="control-label col-md-4" for="accountValidTo">{{'LABEL_VALID_TO'
+											| translate }}</label>
+										<div class="col-md-4">
+											<div class="input-group">
+												<span class="input-group-addon"><span
+													class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+												<input id="accountValidTo" placeholder="select date"
+													class="form-control" type="text" value="31.12.9999">
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="form-group col-md-6">
+										<label class="control-label col-md-4" for="inputPhone">{{'LABEL_PHONE'
+											| translate }}</label>
+										<div class="col-md-8">
+											<div class="input-group">
+												<span class="input-group-addon"><span
+													class="glyphicon glyphicon-earphone" aria-hidden="true"></span></span>
+												<input type="text" class="form-control" id="inputPhone"
+													placeholder="phone number">
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="form-group col-md-6">
+										<label class="control-label col-md-4" for="inputNote">{{'LABEL_COMMENT'
+											| translate }}</label>
+										<div class="col-md-8">
+											<textarea class="form-control" id="inputNote"
+												placeholder="any comment or description"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">{{'BUTTON_CREATE'
+						| translate }}</button>
+					<button type="reset" class="btn btn-link">{{'BUTTON_CANCEL'
+						| translate }}</button>
+				</div>
+			</div>
+
+		</form>
+	</div>
+
+	<!-- 
 	<div class="container-fluid">
 		<form role="form">
 			<div class="form-group"></div>
