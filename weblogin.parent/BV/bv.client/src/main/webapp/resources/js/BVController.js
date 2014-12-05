@@ -1,9 +1,4 @@
-angular.module('BV.Controllers', []).controller("BVController",
-		function($scope, $translate) {
-			$scope.changeLanguage = function(key) {
-				$translate.use(key);
-			};
-		});
+
 // .controller(
 // "BVController", []);
 
