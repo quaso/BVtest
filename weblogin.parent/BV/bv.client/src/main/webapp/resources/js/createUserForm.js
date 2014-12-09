@@ -11,9 +11,15 @@ angular
 							$scope.userType = {};
 							$scope.userTypes = [ 'group1', 'group2', 'group3',
 									'group4', 'group5', 'group6' ];
-							
+
 							$scope.language = {};
-							$scope.languages = [ {id:'EN', text:'LANG_EN'}, {id:'DE', text:'LANG_DE'} ];
+							$scope.languages = [ {
+								id : 'EN',
+								text : 'LANG_EN'
+							}, {
+								id : 'DE',
+								text : 'LANG_DE'
+							} ];
 
 							$scope.generatePassword = function() {
 								var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
@@ -31,8 +37,8 @@ angular
 							$scope.defaultPassword = function() {
 								$scope.password = "startpw";
 							};
-							
-							$scope.reset = function(){
+
+							$scope.reset = function() {
 								$scope.userType.selected = undefined;
 								$scope.language.selected = undefined;
 							}
