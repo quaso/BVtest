@@ -1,13 +1,4 @@
 angular.module('BV.Controllers').controller("DatePickerController", [ '$scope', function($scope) {
-	$scope.today = function() {
-		$scope.dt = new Date();
-	};
-	$scope.today();
-
-	$scope.clear = function() {
-		$scope.dt = null;
-	};
-
 	$scope.open = function($event) {
 		$event.preventDefault();
 		$event.stopPropagation();
