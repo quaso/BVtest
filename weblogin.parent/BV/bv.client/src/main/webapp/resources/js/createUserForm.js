@@ -1,11 +1,12 @@
 angular.module('BV.Controllers').controller("CreateUserController", [ '$scope', function($scope) {
-	$scope.password = "startpw";
 	$scope.isCollapsed = false;
 	$scope.dateFormat = 'dd.MM.yyyy';
 	$scope.today = new Date();
 	$scope.validFrom = $scope.today;
 	$scope.validTo = new Date(2014, 11, 31, 0, 0, 0, 0);
 	$scope.opened = [ false, false ];
+	$scope.submitted = false;
+	$scope.user = [  ];
 
 	$scope.userType = {};
 	$scope.userTypes = [ 'group1', 'group2', 'group3', 'group4', 'group5', 'group6' ];
@@ -27,16 +28,17 @@ angular.module('BV.Controllers').controller("CreateUserController", [ '$scope', 
 			var rnum = Math.floor(Math.random() * chars.length);
 			randomstring += chars.substring(rnum, rnum + 1);
 		}
-		$scope.password = randomstring;
+		$scope.user.password = randomstring;
 	};
 
 	$scope.defaultPassword = function() {
-		$scope.password = "startpw";
+		$scope.user.password = "startpw";
 	};
 
 	$scope.reset = function() {
 		$scope.userType.selected = "";
 		$scope.language.selected = "";
+		$scope.submitted = false;
 	}
 
 	$scope.open = function($event, id) {
@@ -54,6 +56,13 @@ angular.module('BV.Controllers').controller("CreateUserController", [ '$scope', 
 	$scope.toDateOptions = {
 		formatYear : 'yy',
 		startingDay : 1,
-		minDate: '12.12.2014'
+		minDate : '12.12.2014'
 	};
+
+	// function to submit the form after all validation has occurred
+	$scope.submitForm = function(isValid) {
+		$scope.submitted = true;
+	}
+	
+	$scope.defaultPassword();
 } ]);

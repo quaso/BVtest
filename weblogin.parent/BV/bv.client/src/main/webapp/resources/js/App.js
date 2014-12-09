@@ -24,7 +24,8 @@ app.config(function($translateProvider) {
 		BUTTON_CREATE : 'Create',
 		BUTTON_CANCEL : 'Cancel',
 		CAPTION_OPTIONAL_PARAMETERS : 'Optional parameters',
-		PLACEHOLDER_USER_TYPE : 'select one'
+		ERROR_REQUIRED: 'Required',
+		ERROR_INVALID_FORMAT: 'Invalid format'
 	});
 	$translateProvider.translations('de', {
 		LANG_EN : 'Englisch',
@@ -47,7 +48,8 @@ app.config(function($translateProvider) {
 		BUTTON_CREATE : 'Speichern',
 		BUTTON_CANCEL : 'Abbrechen',
 		CAPTION_OPTIONAL_PARAMETERS : 'Optionale Parameter',
-		PLACEHOLDER_USER_TYPE : 'wählen Sie eine'
+		ERROR_REQUIRED: 'Erforderlich',
+		ERROR_INVALID_FORMAT: 'Ungültiges Format'
 	});
 	$translateProvider.preferredLanguage('en');
 });
