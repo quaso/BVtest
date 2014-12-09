@@ -8,7 +8,6 @@
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.css" />
 
-<!-- <link rel="stylesheet" href="resources/css/dashboard.css" /> -->
 <link rel="stylesheet" href="resources/css/main.css" />
 <link rel="stylesheet" href="resources/vendor/ui-select/select.min.css" />
 
@@ -48,7 +47,7 @@
 						| translate }}</label>
 					<div class="col-md-8">
 						<input id="textFirstName" name="textFirstName"
-							class="form-control" type="text" required="required">
+							class="form-control" type="text" required="required" ng-show="submitted && createUserForm.">
 						<div class="help-block with-errors"></div>
 					</div>
 				</div>
@@ -165,10 +164,10 @@
 											<span class="input-group-addon"><span
 												class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
 											<input id="accountValidFrom" type="text" class="form-control"
-												datepicker-popup="dateFormat" ng-model="validFrom" is-open="opened"
-												min-date="{{today()}}" datepicker-options="dateOptions"
-												ng-required="true" ng-click="open($event)"
-												show-button-bar="false" show-weeks="false"  />
+												datepicker-popup="{{dateFormat}}" ng-model="validFrom"
+												is-open="opened[0]" min-date="{{today}}"
+												datepicker-options="fromDateOptions" ng-required="true"
+												ng-click="open($event,0)" show-button-bar="false" />
 										</div>
 									</div>
 								</div>
@@ -182,13 +181,12 @@
 										<div class="input-group">
 											<span class="input-group-addon"><span
 												class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-<!-- 											<input id="accountValidTo" type="text" class="form-control" ng-controller="DatePickerController" -->
-<!-- 												datepicker-popup="dateFormat" ng-model="validTo" is-open="opened" -->
-<!-- 												min-date="validFrom" datepicker-options="dateOptions" -->
-<!-- 												ng-required="true" ng-click="open($event)" -->
-<!-- 												show-button-bar="false" show-weeks="false"  /> -->
-											<!-- 											<input id="accountValidTo" placeholder="select date" -->
-											<!-- 												class="form-control" type="text" value="31.12.9999"> -->
+											<input id="accountValidTo" type="text" class="form-control"
+												datepicker-popup="{{dateFormat}}" ng-model="validTo"
+												is-open="opened[1]" datepicker-options="toDateOptions"
+												min-date="{{validFrom}}" ng-required="true"
+												ng-click="open($event,1)" show-button-bar="false"
+												show-weeks="false" />
 										</div>
 									</div>
 								</div>
@@ -225,8 +223,9 @@
 
 			<div class="row col-md-8">
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary">{{'BUTTON_CREATE'
-						| translate }}</button>
+					<button type="submit" class="btn btn-primary"
+						ng-click="submitted=true">{{'BUTTON_CREATE' | translate
+						}}</button>
 					<button type="reset" class="btn btn-link" ng-click="reset()">{{'BUTTON_CANCEL'
 						| translate }}</button>
 				</div>
@@ -249,9 +248,6 @@
 	<script src="resources/js/App.js"></script>
 	<script src="resources/js/BVFilters.js"></script>
 	<script src="resources/js/BVTranslation.js"></script>
-	<script src="resources/js/DatePicker.js"></script>
-	<!-- <script src="resources/js/validator.min.js"></script> -->
-
 	<script src="resources/js/createUserForm.js"></script>
 
 	<!--
