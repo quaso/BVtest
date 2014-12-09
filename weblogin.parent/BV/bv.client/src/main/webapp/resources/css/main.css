@@ -1,3 +1,16 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+	padding-top: 75px;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+	border: 0;
+}
+
 .form-horizontal .control-label {
 	text-align: left;
 }
@@ -28,7 +41,7 @@
 	display: inline-block;
 }
 
-.bold {
+.text-important {
 	font-weight: bold;
 }
 
@@ -36,9 +49,8 @@
 	padding: 12px 0 0 0;
 }
 
-.float-right {
+.align-right {
 	float: right;
-<<<<<<< HEAD
 }
 
 .cursor-hand {

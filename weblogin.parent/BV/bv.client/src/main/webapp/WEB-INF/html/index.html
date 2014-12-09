@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <title>Create user</title>
-<!-- <link rel="icon" type="image/x-icon" href="resources/favicon.ico" /> -->
+<!-- <link rel="icon" type="image/x-icon" href="resources/img/favicon.ico" /> -->
 
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.css" />
 
-<link rel="stylesheet" href="resources/css/dashboard.css" />
+<!-- <link rel="stylesheet" href="resources/css/dashboard.css" /> -->
 <link rel="stylesheet" href="resources/css/main.css" />
-<link rel="stylesheet" href="resources/css/select.min.css" />
+<link rel="stylesheet" href="resources/vendor/ui-select/select.min.css" />
 
 </head>
 <body>
@@ -29,8 +29,8 @@
 						title="{{'LANG_DE' | translate }}"></div>
 				</div>
 				<div class="pull-right col-md-3">
-					<div class="row float-right">
-						{{'LOGGED_USER_TEXT' | translate }} <span class="bold">f017mkn</span>
+					<div class="row align-right">
+						{{'LOGGED_USER_TEXT' | translate }} <span class="text-important">f017mkn</span>
 					</div>
 				</div>
 			</div>
@@ -132,7 +132,7 @@
 						<h4 class="panel-title">
 							{{'CAPTION_OPTIONAL_PARAMETERS' | translate }}<span
 								class="glyphicon pull-right"
-								ng-class="{'glyphicon-chevron-right': isCollapsed, 'glyphicon-chevron-up': !isCollapsed}"
+								ng-class="{'glyphicon-chevron-right': isCollapsed, 'glyphicon-chevron-down': !isCollapsed}"
 								aria-hidden="true"></span>
 						</h4>
 					</div>
@@ -161,10 +161,11 @@
 									<label class="control-label col-md-4" for="accountValidFrom">{{'LABEL_VALID_FROM'
 										| translate }}</label>
 									<div class="col-md-5">
-										<div class="input-group" ng-controller="DatePickerController">
+										<div class="input-group">
 											<span class="input-group-addon"><span
 												class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
 											<input id="accountValidFrom" type="text" class="form-control"
+												ng-controller="DatePickerController"
 												datepicker-popup="{{format}}" ng-model="dt" is-open="opened"
 												min-date="minDate" datepicker-options="dateOptions"
 												ng-required="true" ng-click="open($event)"
@@ -182,8 +183,14 @@
 										<div class="input-group">
 											<span class="input-group-addon"><span
 												class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-											<input id="accountValidTo" placeholder="select date"
-												class="form-control" type="text" value="31.12.9999">
+											<input id="accountValidFrom" type="text" class="form-control"
+												ng-controller="DatePickerController"
+												datepicker-popup="{{format}}" ng-model="dt" is-open="opened"
+												min-date="minDate" datepicker-options="dateOptions"
+												ng-required="true" ng-click="open($event)"
+												show-button-bar="false" />
+											<!-- 											<input id="accountValidTo" placeholder="select date" -->
+											<!-- 												class="form-control" type="text" value="31.12.9999"> -->
 										</div>
 									</div>
 								</div>
@@ -235,16 +242,16 @@
 		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular.js"></script>
 	<script
 		src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular-sanitize.js"></script>
-	<!-- <script -->
-	<!-- 	src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.17/angular-animate.js"></script> -->
-	<script src="resources/js/angular-translate.min.js"></script>
-	<script src="resources/js/ui-bootstrap-tpls-0.12.0.min.js"></script>
+	<script
+		src="resources/vendor/bower-angular-translate-2.5.0/angular-translate.min.js"></script>
+	<script src="resources/vendor/ui-select/select.min.js"></script>
+	<script
+		src="resources/vendor/ui-bootstrap/ui-bootstrap-tpls-0.12.0.min.js"></script>
 
 	<script src="resources/js/App.js"></script>
 	<script src="resources/js/BVFilters.js"></script>
 	<script src="resources/js/BVTranslation.js"></script>
 	<script src="resources/js/DatePicker.js"></script>
-	<script src="resources/js/select.min.js"></script>
 	<!-- <script src="resources/js/validator.min.js"></script> -->
 
 	<script src="resources/js/createUserForm.js"></script>
