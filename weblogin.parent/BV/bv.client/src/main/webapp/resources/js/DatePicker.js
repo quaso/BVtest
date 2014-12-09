@@ -10,6 +10,4 @@ angular.module('BV.Controllers').controller("DatePickerController", [ '$scope', 
 		formatYear : 'yy',
 		startingDay : 1
 	};
-
-	$scope.format = 'dd.MM.yyyy';
 } ]);

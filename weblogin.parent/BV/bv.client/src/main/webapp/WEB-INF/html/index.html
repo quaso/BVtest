@@ -165,10 +165,9 @@
 											<span class="input-group-addon"><span
 												class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
 											<input id="accountValidFrom" type="text" class="form-control"
-												ng-controller="DatePickerController"
-												datepicker-popup="validFrom.format" ng-model="validFrom.value" is-open="opened"
+												datepicker-popup="dateFormat" ng-model="validFrom" is-open="opened"
 												min-date="{{today()}}" datepicker-options="dateOptions"
-												ng-required="true" ng-click="open($event)" ng-change="validFromChanged()"
+												ng-required="true" ng-click="open($event)"
 												show-button-bar="false" show-weeks="false"  />
 										</div>
 									</div>
@@ -183,12 +182,11 @@
 										<div class="input-group">
 											<span class="input-group-addon"><span
 												class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
-											<input id="accountValidTo" type="text" class="form-control"
-												ng-controller="DatePickerController"
-												datepicker-popup="{{format}}" ng-model="validTo" is-open="opened"
-												min-date="minDateValidTo" datepicker-options="dateOptions"
-												ng-required="true" ng-click="open($event)"
-												show-button-bar="false" show-weeks="false"  />
+<!-- 											<input id="accountValidTo" type="text" class="form-control" ng-controller="DatePickerController" -->
+<!-- 												datepicker-popup="dateFormat" ng-model="validTo" is-open="opened" -->
+<!-- 												min-date="validFrom" datepicker-options="dateOptions" -->
+<!-- 												ng-required="true" ng-click="open($event)" -->
+<!-- 												show-button-bar="false" show-weeks="false"  /> -->
 											<!-- 											<input id="accountValidTo" placeholder="select date" -->
 											<!-- 												class="form-control" type="text" value="31.12.9999"> -->
 										</div>

@@ -1,9 +1,9 @@
 angular.module('BV.Controllers').controller("CreateUserController", [ '$scope', function($scope) {
 	$scope.password = "startpw";
 	$scope.isCollapsed = false;
-	$scope.validFrom =[{value: new Date(), format:'dd.MM.yyyy'}];
+	$scope.dateFormat = 'dd.MM.yyyy';
+	$scope.validFrom = new Date();
 	$scope.validTo = new Date(2014, 11, 31, 0, 0, 0, 0);
-	$scope.minDateValidTo = $scope.validFrom.value;
 
 	$scope.userType = {};
 	$scope.userTypes = [ 'group1', 'group2', 'group3', 'group4', 'group5', 'group6' ];
@@ -36,8 +36,16 @@ angular.module('BV.Controllers').controller("CreateUserController", [ '$scope', 
 		$scope.userType.selected = "";
 		$scope.language.selected = "";
 	}
+	
+	$scope.open = function($event) {
+		$event.preventDefault();
+		$event.stopPropagation();
 
-	$scope.validFromChanged = function() {
-		$scope.minDateValidTo = $scope.validFrom;
-	}
+		$scope.opened = true;
+	};
+
+	$scope.dateOptions = {
+		formatYear : 'yy',
+		startingDay : 1
+	};
 } ]);
