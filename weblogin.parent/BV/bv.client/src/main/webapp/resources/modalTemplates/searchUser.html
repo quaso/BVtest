@@ -1,0 +1,38 @@
+<!-- <div class="modal-header"> -->
+<!-- 	<h4 class="modal-title">Search a user</h4> -->
+<!-- </div> -->
+<!-- <div class="modal-body"> -->
+<!-- 	<ng-form name="searchUserDialog" novalidate role="form"> -->
+<!-- 	<div class="form-group input-group-lg" -->
+<!-- 		ng-class="{true: \'has-error\'}[searchUserDialog.searchName.$dirty && searchUserDialog.searchName.$invalid]"> -->
+<!-- 		<label class="control-label" for="searchName">Search for:</label> <input -->
+<!-- 			type="text" class="form-control" name="searchName" id="searchName" -->
+<!-- 			ng-model="searchName" ng-keyup="hitEnter($event)" ng-required="true"> -->
+<!-- 		<label class="control-label" for="searchType">as:</label> <select -->
+<!-- 			name="userSearchMenu" ng-model="searchType" class="form-control" -->
+<!-- 			ng-required="true" ng-options="item for item in userSearchOptions"></select> -->
+<!-- 	</div> -->
+<!-- 	</ng-form> -->
+<!-- </div> -->
+<!-- <div class="modal-footer"> -->
+<!-- 	<button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button> -->
+<!-- 	<button type="button" class="btn btn-primary" ng-click="search()" -->
+<!-- 		ng-disabled="(searchUserDialog.$dirty && searchUserDialog.$invalid) || searchUserDialog.$pristine">Search</button> -->
+<!-- </div> -->
+
+<script type="text/ng-template" id="searchUserModal.html">
+<div class="modal-header">
+	<h3 class="modal-title">{{'SEARCH_USER_CAPTION' | translate}}</h3>
+</div>
+<div class="modal-body">
+
+	<select name="userSearchMenu" ng-model="searchType"
+		class="form-control" ng-required="true"
+		ng-options="item for item in userSearchOptions"></select>
+	Selected: <b>{{ selected.item }}</b>
+</div>
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="ok()">Search</button>
+	<button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
+</script>

@@ -7,7 +7,6 @@
 
 <link rel="stylesheet"
 	href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.css" />
-
 <link rel="stylesheet" href="resources/css/main.css" />
 
 </head>
@@ -24,45 +23,53 @@
 			</a>
 			<div class="container">
 				<div class="col-md-1"></div>
-				<ul class="nav navbar-nav">
+				<ul class="nav navbar-nav" ng-controller="SearchController">
+					<div ng-include="'resources/modalTemplates/searchUser.html'" ng-hide="true"></div>
+
+
+<!-- 					<p> -->
+<!-- 						<span class="text-info">Your Name</span>: {{name}} -->
+<!-- 					</p> -->
 					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">Users
-							<span class="caret"></span>
+						data-toggle="dropdown" role="button" aria-expanded="false">{{'MENU_USERS'
+							| translate }} <span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Search</a></li>
+							<li><a class="cursor-hand" ng-click="openModal('user')">{{'MENU_USERS_SEARCH'
+									| translate }}</a></li>
 							<li class="divider"></li>
-							<li><a href="#/createUserLayout">Create</a></li>
-							<li><a href="#">Upload</a></li>
+							<li><a href="#/createUserLayout">{{'MENU_USERS_CREATE' |
+									translate }}</a></li>
+							<li><a href="#">{{'MENU_USERS_UPLOAD' | translate }}</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">Groups
-							<span class="caret"></span>
+						data-toggle="dropdown" role="button" aria-expanded="false">{{'MENU_GROUPS'
+							| translate }} <span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Search</a></li>
+							<li><a href="#">{{'MENU_GROUPS_SEARCH' | translate }}</a></li>
 							<li class="divider"></li>
-							<li><a href="#">Create</a></li>
+							<li><a href="#">{{'MENU_GROUPS_CREATE' | translate }}</a></li>
 							<li><a href="#">...</a></li>
 						</ul></li>
 					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-expanded="false">Profiles
-							<span class="caret"></span>
+						data-toggle="dropdown" role="button" aria-expanded="false">{{'MENU_PROFILES'
+							| translate }} <span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Search</a></li>
+							<li><a href="#">{{'MENU_PROFILES_SEARCH' | translate }}</a></li>
 							<li class="divider"></li>
-							<li><a href="#">Create</a></li>
+							<li><a href="#">{{'MENU_PROFILES_CREATE' | translate }}</a></li>
 						</ul></li>
 				</ul>
 
 
-				<!-- 				<form class="navbar-form navbar-left" role="search"> -->
-				<!-- 					<div class="form-group"> -->
-				<!-- 						<input type="text" class="form-control col-md-1" placeholder="Quick search"> -->
-				<!-- 						<button type="submit" class="btn btn-default">Submit</button> -->
-				<!-- 					</div> -->
-				<!-- 				</form> -->
+<!-- 								<form class="navbar-form navbar-left" role="search"> -->
+<!-- 									<div class="form-group"> -->
+<!-- 										<input type="text" class="form-control col-md-1" placeholder="Quick search"> -->
+<!-- 										<button type="submit" class="btn btn-default">Submit</button> -->
+<!-- 									</div> -->
+<!-- 								</form> -->
 				<div class="pull-right col-md-1 navbar-text">
 					<div class="lang-eng" title="{{'LANG_EN' | translate }}"
 						ng-click="changeLanguage('en')"></div>
@@ -92,15 +99,14 @@
 		src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular-route.min.js"></script>
 	<script
 		src="resources/vendor/bower-angular-translate-2.5.0/angular-translate.min.js"></script>
-	<!-- 	<script src="resources/vendor/ui-select/select.min.js"></script> -->
 	<script
 		src="resources/vendor/ui-bootstrap/ui-bootstrap-tpls-0.12.0.min.js"></script>
 
 	<script src="resources/js/App.js"></script>
-	<script src="resources/js/BVFilters.js"></script>
 	<script src="resources/js/BVTranslation.js"></script>
-	<script src="resources/js/controllers/createUserForm.js"></script>
 	<script src="resources/js/controllers/welcome.js"></script>
+	<script src="resources/js/controllers/search.js"></script>
+	<script src="resources/js/controllers/createUserForm.js"></script>
 
 	<!--
 	IE8 support, see AngularJS Internet Explorer Compatibility http://docs.angularjs.org/guide/ie
