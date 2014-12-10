@@ -1,12 +1,29 @@
-var app = angular.module('BVApp', [ 'BV.Controllers', 'BV.Filters', 'pascalprecht.translate', 'ngSanitize',
-		'ui.select', 'ui.bootstrap' ]);
+var app = angular.module('BVApp', [ 'BV.Controllers', 'BV.Filters', 'pascalprecht.translate', 'ngSanitize', 'ngRoute',
+		'ui.bootstrap' ]);
 angular.module('BV.Controllers', []);
+
+app.config([ '$routeProvider', function($routeProvider) {
+
+	$routeProvider.when('/welcome', {
+		templateUrl : 'welcome/layout',
+		controller : WelcomeController
+	});
+
+	$routeProvider.when('/createUserLayout', {
+		templateUrl : 'user/add/layout',
+		controller : CreateUserController
+	});
+
+	$routeProvider.otherwise({
+		redirectTo : '/welcome'
+	});
+} ]);
 
 app.config(function($translateProvider) {
 	$translateProvider.translations('en', {
 		LANG_EN : 'English',
 		LANG_DE : 'German',
-		CAPTION : 'User management',
+		CAPTION : 'Users management',
 		LOGGED_USER_TEXT : 'Logged as: ',
 		LABEL_FIRST_NAME : 'First name',
 		LABEL_LAST_NAME : 'Last name',
@@ -24,8 +41,10 @@ app.config(function($translateProvider) {
 		BUTTON_CREATE : 'Create',
 		BUTTON_CANCEL : 'Cancel',
 		CAPTION_OPTIONAL_PARAMETERS : 'Optional parameters',
-		ERROR_REQUIRED: 'Required',
-		ERROR_INVALID_FORMAT: 'Invalid format'
+		ERROR_REQUIRED : 'Required',
+		ERROR_INVALID_FORMAT : 'Invalid format',
+		MSG_WELCOME: 'Welcome',
+		MSG_WELCOME_TEXT : 'This is a brand new User management application. Currently it is under development, so please apologize any minor bugs :)'
 	});
 	$translateProvider.translations('de', {
 		LANG_EN : 'Englisch',
@@ -48,8 +67,10 @@ app.config(function($translateProvider) {
 		BUTTON_CREATE : 'Speichern',
 		BUTTON_CANCEL : 'Abbrechen',
 		CAPTION_OPTIONAL_PARAMETERS : 'Optionale Parameter',
-		ERROR_REQUIRED: 'Erforderlich',
-		ERROR_INVALID_FORMAT: 'Ungültiges Format'
+		ERROR_REQUIRED : 'Erforderlich',
+		ERROR_INVALID_FORMAT : 'Ungültiges Format',
+		MSG_WELCOME: 'Willkommen',
+		MSG_WELCOME_TEXT : 'Dies ist ein ganz neues User-Management-Anwendung. Derzeit wird in der Entwicklung, also bitte entschuldigen kleinere Fehler :)'
 	});
 	$translateProvider.preferredLanguage('en');
 });

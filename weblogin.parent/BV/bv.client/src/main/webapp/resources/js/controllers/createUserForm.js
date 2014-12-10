@@ -1,15 +1,14 @@
-angular.module('BV.Controllers').controller("CreateUserController", [ '$scope', function($scope) {
+var CreateUserController = function($scope) {
 	$scope.isCollapsed = false;
 	$scope.dateFormat = 'dd.MM.yyyy';
 	$scope.today = new Date();
 	$scope.validFrom = $scope.today;
-	$scope.validTo = new Date(2014, 11, 31, 0, 0, 0, 0);
+	$scope.validTo = new Date(9999, 11, 31, 0, 0, 0, 0);
 	$scope.opened = [ false, false ];
 	$scope.submitted = false;
-	$scope.user = [  ];
+	$scope.user = [];
 
-	$scope.userType = {};
-	$scope.userTypes = [ 'group1', 'group2', 'group3', 'group4', 'group5', 'group6' ];
+	$scope.userTypes = [ 'group1', 'group2', 'group3', 'group4', 'group5', 'very long long group6' ];
 
 	$scope.language = {};
 	$scope.languages = [ {
@@ -55,14 +54,15 @@ angular.module('BV.Controllers').controller("CreateUserController", [ '$scope', 
 
 	$scope.toDateOptions = {
 		formatYear : 'yy',
-		startingDay : 1,
-		minDate : '12.12.2014'
+		startingDay : 1
 	};
 
 	// function to submit the form after all validation has occurred
 	$scope.submitForm = function(isValid) {
 		$scope.submitted = true;
 	}
-	
+
 	$scope.defaultPassword();
-} ]);
+};
+
+angular.module('BV.Controllers').controller("CreateUserController", [ '$scope', CreateUserController ]);

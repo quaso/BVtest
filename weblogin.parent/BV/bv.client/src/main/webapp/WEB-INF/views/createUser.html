@@ -1,0 +1,212 @@
+<div class="container">
+	<form name="createUserForm" class="form-horizontal col-md-10"
+		role="form" method="post"
+		ng-submit="submitForm(createUserForm.$valid)" novalidate>
+		<!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+
+		<div class="row col-md-7">
+			<div class="form-group required">
+				<label class="control-label col-md-4" for="textFirstName">{{'LABEL_FIRST_NAME'
+					| translate }}</label>
+				<div class="col-md-8"
+					ng-class="{ 'has-error' : submitted && createUserForm.textFirstName.$error.required }">
+					<input id="textFirstName" name="textFirstName" class="form-control"
+						type="text" ng-model="user.firstName" ng-required="true">
+					<span
+						ng-show="submitted && createUserForm.textFirstName.$error.required"
+						class="help-block">{{'ERROR_REQUIRED' | translate}}</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="row col-md-7">
+			<div class="form-group required">
+				<label class="control-label col-md-4" for="textLastName">{{'LABEL_LAST_NAME'
+					| translate }}</label>
+				<div class="col-md-8"
+					ng-class="{ 'has-error' : submitted && createUserForm.textLastName.$error.required }">
+					<input id="textLastName" name="textLastName"
+						class="form-control input-md" type="text" ng-model="user.lastName"
+						ng-required="true"> <span
+						ng-show="submitted && createUserForm.textLastName.$error.required"
+						class="help-block">{{'ERROR_REQUIRED' | translate}}</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="row col-md-7">
+			<div class="form-group required">
+				<label class="control-label col-md-4" for="textUserId">{{'LABEL_USER_ID'
+					| translate }}</label>
+				<div class="col-md-4"
+					ng-class="{ 'has-error' : submitted && createUserForm.textUserId.$error.required }">
+					<input id="textUserId" name="textUserId" ng-model="user.id"
+						class="form-control input-md" type="text" ng-required="true">
+					<span
+						ng-show="submitted && createUserForm.textUserId.$error.required"
+						class="help-block">{{'ERROR_REQUIRED' | translate}}</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="row col-md-7">
+			<div class="form-group required">
+				<label class="control-label col-md-4" for="userTypeMenu">{{'LABEL_USER_TYPE'
+					| translate }}</label>
+				<div class="col-md-8"
+					ng-class="{ 'has-error' : submitted && createUserForm.userTypeMenu.$error.required }">
+					<select name="userTypeMenu" ng-model="user.type"
+						class="form-control" ng-required="true"
+						ng-options="type for type in userTypes"></select> <span
+						ng-show="submitted && createUserForm.userTypeMenu.$error.required"
+						class="help-block">{{'ERROR_REQUIRED' | translate}}</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="row col-md-7">
+			<div class="form-group required">
+				<label class="control-label col-md-4" for="inputEmail">{{'LABEL_EMAIL'
+					| translate }}</label>
+				<div class="col-md-8"
+					ng-class="{ 'has-error' : submitted && (createUserForm.inputEmail.$error.required || (!createUserForm.inputEmail.$pristine && createUserForm.inputEmail.$invalid))}">
+					<div class="input-group">
+						<span class="input-group-addon"><span
+							class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span> <input
+							type="email" class="form-control" id="inputEmail"
+							name="inputEmail" ng-required="true" ng-model="user.email">
+					</div>
+					<span
+						ng-show="submitted && createUserForm.inputEmail.$error.required"
+						class="help-block">{{'ERROR_REQUIRED' | translate}}</span> <span
+						ng-show="submitted && !createUserForm.inputEmail.$error.required && !createUserForm.inputEmail.$pristine && createUserForm.inputEmail.$invalid"
+						class="help-block">{{'ERROR_INVALID_FORMAT' | translate}}</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="row col-md-7">
+			<div class="form-group required">
+				<label class="control-label col-md-4" for="initialPwd">{{'LABEL_INIT_PWD'
+					| translate }}</label>
+				<div class="col-md-4"
+					ng-class="{ 'has-error' : submitted && createUserForm.initialPwd.$error.required }">
+					<input id="initialPwd" name="initialPwd"
+						class="form-control input-md" type="text" ng-required="true"
+						value="startpw" ng-model="user.password"> <span
+						ng-show="submitted && createUserForm.initialPwd.$error.required"
+						class="help-block">{{'ERROR_REQUIRED' | translate}}</span>
+				</div>
+				<button type="button" class="btn btn-default btn-sm"
+					ng-click="generatePassword()">{{'BUTTON_GENERATE' |
+					translate }}</button>
+				<button type="button" class="btn btn-default btn-sm"
+					style="margin-left: 10px;" ng-click="defaultPassword()">{{'BUTTON_DEFAULT'
+					| translate }}</button>
+			</div>
+		</div>
+
+		<div class="row col-md-12" style="padding-left: 0;">
+			<div class="panel panel-default">
+				<div class="panel-heading cursor-hand" role="tab"
+					id="headingOptional" data-toggle="collapse"
+					data-target="#collapseOptional"
+					ng-click="isCollapsed = !isCollapsed">
+					<h4 class="panel-title">
+						{{'CAPTION_OPTIONAL_PARAMETERS' | translate }}<span
+							class="glyphicon pull-right"
+							ng-class="{'glyphicon-chevron-right': isCollapsed, 'glyphicon-chevron-down': !isCollapsed}"
+							aria-hidden="true"></span>
+					</h4>
+				</div>
+				<div id="collapseOptional" class="panel-collapse collapse"
+					role="tabpanel" aria-labelledby="headingOptional">
+					<div class="panel-body">
+
+						<div class="row col-md-7">
+							<div class="form-group">
+								<label class="control-label col-md-4" for="languageMenu">{{'LABEL_LANGUAGE'
+									| translate }}</label>
+								<div class="col-md-5">
+									<select name="languageMenu" ng-model="user.language"
+										class="form-control" ng-required="true"
+										ng-options="lang.text | translate for lang in languages"></select>
+								</div>
+							</div>
+						</div>
+
+						<div class="row col-md-7">
+							<div class="form-group">
+								<label class="control-label col-md-4" for="accountValidFrom">{{'LABEL_VALID_FROM'
+									| translate }}</label>
+								<div class="col-md-5">
+									<div class="input-group">
+										<span class="input-group-addon"><span
+											class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+										<input id="accountValidFrom" type="text" class="form-control"
+											datepicker-popup="{{dateFormat}}" ng-model="validFrom"
+											is-open="opened[0]" min-date="{{today}}"
+											datepicker-options="fromDateOptions"
+											ng-click="open($event,0)" show-button-bar="false" />
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row col-md-7">
+							<div class="form-group">
+								<label class="control-label col-md-4" for="accountValidTo">{{'LABEL_VALID_TO'
+									| translate }}</label>
+								<div class="col-md-5">
+									<div class="input-group">
+										<span class="input-group-addon"><span
+											class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
+										<input id="accountValidTo" type="text" class="form-control"
+											datepicker-popup="{{dateFormat}}" ng-model="validTo"
+											is-open="opened[1]" datepicker-options="toDateOptions"
+											min-date="{{validFrom}}" ng-click="open($event,1)"
+											show-button-bar="false" />
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row col-md-7">
+							<div class="form-group">
+								<label class="control-label col-md-4" for="inputPhone">{{'LABEL_PHONE'
+									| translate }}</label>
+								<div class="col-md-8">
+									<div class="input-group">
+										<span class="input-group-addon"><span
+											class="glyphicon glyphicon-earphone" aria-hidden="true"></span></span>
+										<input type="text" class="form-control" id="inputPhone">
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row col-md-7">
+							<div class="form-group">
+								<label class="control-label col-md-4" for="inputNote">{{'LABEL_COMMENT'
+									| translate }}</label>
+								<div class="col-md-8">
+									<textarea class="form-control" id="inputNote"
+										placeholder="any comment or description"></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row col-md-8">
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary">{{'BUTTON_CREATE'
+					| translate }}</button>
+				<button type="reset" class="btn btn-link" ng-click="reset()">{{'BUTTON_CANCEL'
+					| translate }}</button>
+			</div>
+		</div>
+	</form>
+</div>
